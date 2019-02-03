@@ -11,10 +11,6 @@ const url = `mongodb://osa3:${password}@ds239177.mlab.com:39177/oraisa-fullstack
 
 mongoose.connect(url, { useNewUrlParser: true })
 
-const personSchema = new mongoose.Schema({
-    name: String,
-    number: String,
-})
 
 const Person = mongoose.model('Person', personSchema)
 
