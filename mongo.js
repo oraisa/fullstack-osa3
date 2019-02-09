@@ -11,17 +11,20 @@ const url = `mongodb://osa3:${password}@ds239177.mlab.com:39177/oraisa-fullstack
 
 mongoose.connect(url, { useNewUrlParser: true })
 
-
-const Person = mongoose.model('Person', personSchema)
+const personSchema = new mongoose.Schema({
+    name: { type: String, required: true, unique: true, minlength: 3 },
+    number: { type: String, required: true, minlength: 8 }
+})
+const Person = mongoose.model("Person", personSchema)
 
 const addPerson = (name, number) => {
     const person = new Person({
         name: name,
-        number: number,
+        number: number
     })
     person.save().then(response => {
-        console.log(`lisätään ${name} numero ${number} tietokantaan`);
-        mongoose.connection.close();
+        console.log(`lisätään ${name} numero ${number} tietokantaan`)
+        mongoose.connection.close()
     })
 }
 
